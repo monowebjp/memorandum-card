@@ -9,7 +9,7 @@ export default {
   head: {
     title: 'app',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ja',
     },
     meta: [
       { charset: 'utf-8' },
@@ -45,10 +45,20 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
+    proxy: true,
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
   },
-
+  proxy: {
+    '/api': {
+      target: 'http://bithitkit.mods.jp/uxTestAPI/',
+      pathRewrite: { '^/api': '' }
+    },
+   '/add': {
+     target: 'http://bithitkit.mods.jp/uxTestAPI/add.php',
+     pathRewrite: { '^/add': '' }
+    }
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }
